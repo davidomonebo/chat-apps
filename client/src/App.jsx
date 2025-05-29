@@ -10,21 +10,12 @@ const App = () => {
   const { authUser } = useContext(AuthContext);
 
   return (
-    <div className="min-h-screen bg-[url('/bgImage.svg')] bg-contain">
-      <Toaster position="top-right" reverseOrder={false} />
+    <div className="bg-[url('/bgImage.svg')] bg-contain">
+      <Toaster />
       <Routes>
-        <Route
-          path="/"
-          element={authUser ? <HomePage /> : <Navigate to="/login" replace />}
-        />
-        <Route
-          path="/login"
-          element={!authUser ? <LoginPage /> : <Navigate to="/" replace />}
-        />
-        <Route
-          path="/profile"
-          element={authUser ? <ProfilePage /> : <Navigate to="/login" replace />}
-        />
+        <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
+        <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to="/" />} />
+        <Route path="/profile" element={authUser ? <ProfilePage /> : <Navigate to="/login" />} />
       </Routes>
     </div>
   );
